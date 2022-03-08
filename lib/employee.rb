@@ -4,6 +4,7 @@ class Employee < ActiveRecord::Base
   validates :first_name, presence: true
   validates :last_name, presence: true
   validates :hourly_rate, presence: true, numericality: true
+  before_validation :generate_password, on: :create
 
   validate :hourly_rate, :in_range
   validates_associated :store
@@ -11,5 +12,9 @@ class Employee < ActiveRecord::Base
   def in_range
     wage = hourly_rate.to_i
     errors.add(:hourly_rate, 'Must be between 40 and 200') unless wage >= 40 && wage <= 200
+  end
+
+  def generate_password
+    self.password = (0...8).map { ('a'..'z').to_a[rand(26)] }.join
   end
 end
