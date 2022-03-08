@@ -8,6 +8,15 @@ class Store < ActiveRecord::Base
   validate :mens_apparel, :must_have_one
   validate :womens_apparel, :must_have_one
 
+  before_destroy :stop_destroy
+
+  def stop_destroy
+    if employees.count.positive?
+      errors.add(:base, :undestroyable)
+      false
+    end
+  end
+
   def must_have_one
     if !mens_apparel && !womens_apparel
       errors.add(:mens_apparel, 'One of these must be set to true')
