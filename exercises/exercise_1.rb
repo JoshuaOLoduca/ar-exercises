@@ -19,7 +19,7 @@ richmond.womens_apparel = true
 richmond.save
 
 gastown = Store.new
-gastown.name = 'gastown'
+gastown.name = 'Gastown'
 gastown.annual_revenue = 190_000
 gastown.mens_apparel = true
 gastown.womens_apparel = false
