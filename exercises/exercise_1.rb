@@ -24,3 +24,5 @@ gastown.annual_revenue = 190_000
 gastown.mens_apparel = true
 gastown.womens_apparel = false
 gastown.save
+
+puts "Stores Made: #{Store.count}"
