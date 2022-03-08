@@ -4,10 +4,11 @@ class Employee < ActiveRecord::Base
   validates :first_name, presence: true
   validates :last_name, presence: true
   validates :hourly_rate, presence: true, numericality: true
-  before_validation :generate_password, on: :create
 
   validate :hourly_rate, :in_range
   validates_associated :store
+
+  before_validation :generate_password, on: :create
 
   def in_range
     wage = hourly_rate.to_i
